@@ -13,21 +13,17 @@ A Firefox extension that polls Gmail and displays the unread email count as a ba
 
 ## Installation
 
-### Temporary (Development)
+### From Firefox Add-ons (AMO)
 
-1. Open Firefox and navigate to `about:debugging`
-2. Click **"This Firefox"**
-3. Click **"Load Temporary Add-on…"**
-4. Select the `manifest.json` file from this directory
+> Coming soon — the extension is under review.
 
-### Permanent (Self-signed)
+### From Source (Development)
 
-1. Package the extension: `cd gmail_email_checker && zip -r ../gmail-unread-counter.zip *`
-2. Go to [addons.mozilla.org](https://addons.mozilla.org/developers/) → Submit a New Add-on
-3. Choose **"On your own"** (self-distribution)
-4. Upload the `.zip` file
-5. Mozilla will sign it — download the signed `.xpi`
-6. Open the `.xpi` in Firefox to install permanently
+1. Clone or download this repository
+2. Open Firefox and navigate to `about:debugging`
+3. Click **"This Firefox"**
+4. Click **"Load Temporary Add-on…"**
+5. Select the `manifest.json` file from this directory
 
 ## Usage
 
@@ -48,5 +44,15 @@ A Firefox extension that polls Gmail and displays the unread email count as a ba
 ├── background.js      # Polling & badge logic
 ├── popup.html/js/css  # Popup UI
 ├── options.html/js/css # Settings page
-└── icons/             # Extension icons
+├── icons/             # Extension icons
+├── LICENSE            # MIT License
+└── PRIVACY.md         # Privacy policy
 ```
+
+## Privacy
+
+This extension does not collect, store, or transmit any personal data to external servers. All Gmail data is processed locally in your browser. See [PRIVACY.md](PRIVACY.md) for the full privacy policy.
+
+## License
+
+[MIT](LICENSE)

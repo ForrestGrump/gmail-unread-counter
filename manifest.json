@@ -31,7 +31,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "gmail-unread-counter@local",
+      "id": "gmail-unread-counter@forrestgrump",
       "strict_min_version": "91.0"
     }
   }
