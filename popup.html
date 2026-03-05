@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="header">
+      <img src="icons/gmail-32.png" alt="Gmail" class="header-icon">
+      <h1>Gmail</h1>
+    </div>
+
+    <!-- Status: Loading -->
+    <div id="state-loading" class="state">
+      <div class="spinner"></div>
+      <p class="status-text">Checking Gmail…</p>
+    </div>
+
+    <!-- Status: Not authenticated -->
+    <div id="state-auth" class="state hidden">
+      <div class="auth-icon">🔒</div>
+      <p class="status-text">Sign in to Gmail to see your unread messages.</p>
+      <button id="btn-login" class="btn btn-primary">Open Gmail to Sign In</button>
+    </div>
+
+    <!-- Status: Error -->
+    <div id="state-error" class="state hidden">
+      <div class="error-icon">⚠️</div>
+      <p class="status-text" id="error-message">Something went wrong.</p>
+      <button id="btn-retry" class="btn btn-secondary">Retry</button>
+    </div>
+
+    <!-- Status: OK -->
+    <div id="state-ok" class="state hidden">
+      <div class="unread-badge-container">
+        <span id="unread-count" class="unread-count">0</span>
+        <span class="unread-label">unread</span>
+      </div>
+
+      <!-- Recent messages list -->
+      <div id="entries-container" class="entries-container">
+        <ul id="entries-list" class="entries-list"></ul>
+      </div>
+
+      <div class="actions">
+        <button id="btn-open-gmail" class="btn btn-primary">Open Gmail</button>
+        <button id="btn-refresh" class="btn btn-icon" title="Refresh">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13.65 2.35A7.96 7.96 0 0 0 8 0C3.58 0 0 3.58 0 8s3.58 8 8 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0 1 8 14 6 6 0 1 1 8 2c1.66 0 3.14.69 4.22 1.78L9 7h7V0l-2.35 2.35z" fill="currentColor"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <span id="last-checked" class="last-checked"></span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
