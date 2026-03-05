@@ -58,12 +58,22 @@ function renderEntries(entries) {
         const li = document.createElement("li");
         li.className = "entry-item";
 
-        li.innerHTML = `
-      <div class="entry-sender">${escapeHtml(entry.authorName)}</div>
-      <div class="entry-subject">${escapeHtml(entry.title)}</div>
-      ${entry.summary ? `<div class="entry-summary">${escapeHtml(entry.summary)}</div>` : ""}
-    `;
+        const senderDiv = document.createElement("div");
+        senderDiv.className = "entry-sender";
+        senderDiv.textContent = entry.authorName;
+        li.appendChild(senderDiv);
 
+        const subjectDiv = document.createElement("div");
+        subjectDiv.className = "entry-subject";
+        subjectDiv.textContent = entry.title;
+        li.appendChild(subjectDiv);
+
+        if (entry.summary) {
+            const summaryDiv = document.createElement("div");
+            summaryDiv.className = "entry-summary";
+            summaryDiv.textContent = entry.summary;
+            li.appendChild(summaryDiv);
+        }
         // Click to open message
         if (entry.link) {
             li.addEventListener("click", () => {
