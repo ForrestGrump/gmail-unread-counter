@@ -19,7 +19,9 @@
     "default_title": "Gmail Unread Counter"
   },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": [
+      "background.js"
+    ]
   },
   "options_ui": {
     "page": "options.html",
@@ -34,5 +36,6 @@
       "id": "gmail-unread-counter@forrestgrump",
       "strict_min_version": "91.0"
     }
-  }
+  },
+  "data_collection_permissions": false
 }
