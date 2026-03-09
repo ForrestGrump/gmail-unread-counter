@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -19,6 +21,9 @@ jobs:
 
       - name: Install web-ext
         run: npm install -g web-ext
+
+      - name: Verify Version
+        run: cat manifest.json | grep '"version"'
 
       - name: Build Extension Zip
         run: web-ext build --ignore-files ".git" ".github" "README.md" "PRIVACY.md" "LICENSE" "task.md"
