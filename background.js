@@ -126,7 +126,12 @@ async function notifyNewMail(count, entries) {
       message = `You have ${newCount} new message${newCount !== 1 ? "s" : ""}`;
     }
 
-    browser.notifications.create("gmail-new-mail", {
+    // Include the email link in the notification ID so we can extract it on click
+    const notificationId = latestEntry?.link
+      ? `gmail-new-mail_${latestEntry.link}`
+      : "gmail-new-mail_inbox";
+
+    browser.notifications.create(notificationId, {
       type: "basic",
       iconUrl: browser.runtime.getURL("icons/gmail-128.png"),
       title: "New Gmail Message",
@@ -134,6 +139,7 @@ async function notifyNewMail(count, entries) {
     });
   }
 }
+
 
 // ── Main poll function ──────────────────────────────────────────────────────
 async function pollGmail() {
@@ -231,12 +237,18 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   }
 });
 
-// Notification click → open Gmail
+// Notification click → open specific email (or inbox as fallback)
 browser.notifications.onClicked.addListener((notificationId) => {
-  if (notificationId === "gmail-new-mail") {
-    getSettings().then((settings) => {
-      browser.tabs.create({ url: buildInboxUrl(settings.accountIndex) });
-    });
+  if (notificationId.startsWith("gmail-new-mail_")) {
+    const url = notificationId.replace("gmail-new-mail_", "");
+
+    if (url && url !== "inbox") {
+      browser.tabs.create({ url: url });
+    } else {
+      getSettings().then((settings) => {
+        browser.tabs.create({ url: buildInboxUrl(settings.accountIndex) });
+      });
+    }
     browser.notifications.clear(notificationId);
   }
 });
