@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Gmail Unread Counter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Displays the number of unread Gmail messages on the toolbar icon with real-time polling.",
   "permissions": [
     "alarms",
